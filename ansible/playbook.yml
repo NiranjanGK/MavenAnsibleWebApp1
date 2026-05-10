@@ -1,16 +1,15 @@
-```yaml id="vx9c98"
----
-- hosts: localhost
+- name: Deploy to Tomcat
+  hosts: web
   become: yes
-
   tasks:
     - name: Copy WAR file to Tomcat
       copy:
-        src: /var/snap/jenkins/5022/workspace/MavenAnsible/target/MavenAnsibleWebApp1.war
-        dest: /opt/tomcat/webapps/MavenAnsibleWebApp1.war
+        src: /var/snap/jenkins/5022/workspace/anisible/target/MavenAnsibleWebApp1.war
+        dest: "/opt/tomcat/webapps/MyMavenAnsibleApp01.war"
+        remote_src: no
 
     - name: Restart Tomcat
-      service:
-        name: tomcat
-        state: restarted
-```
+      shell: |
+        /opt/tomcat/bin/shutdown.sh || true
+        sleep 5
+        /opt/tomcat/bin/startup.sh
