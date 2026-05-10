@@ -1,4 +1,4 @@
-```yaml
+```yaml id="vx9c98"
 ---
 - hosts: localhost
   become: yes
